@@ -159,7 +159,7 @@ static void thread_uart1_rx()
     while (1)
     {
         memset(uart_rx, 0, sizeof(uart_rx));
-        rx_size = uart_recv(UART1, uart_rx, sizeof(uart_rx));
+        rx_size = uart_recv(UART1, uart_rx, sizeof(uart_rx)); //uart1 수신 (uart1 rxd)
         if (rx_size < 0)
         {
             FATAL("fail to recv");
@@ -189,13 +189,13 @@ static void thread_uart1_tx()
     {
         memset(uart_tx, 0, sizeof(uart_tx));
 
-        ret = scanf("%s", uart_tx);
+        ret = scanf("%s", uart_tx); //scanf로 입력 받음
         if (ret != 1)
         {
             FATAL("fail to scanf");
         }
 
-        tx_size = uart_send(UART1, uart_tx, strlen(uart_tx));
+        tx_size = uart_send(UART1, uart_tx, strlen(uart_tx)); //scanf 받은 스트링 전송 (uart1_tx)
         if (tx_size < 0)
         {
             FATAL("fail to recv");
